@@ -7,7 +7,7 @@ import {
   InjectionKey,
   Ref,
   inject,
-} from 'vue-demi'
+} from '@vue/composition-api'
 import { isValid, isNum, isBool, isEqual } from '@formily/shared'
 import { h } from '@formily/vue'
 import ResizeObserver from 'resize-observer-polyfill'
@@ -306,7 +306,7 @@ const useGridSpan = (gridSpan: number) => {
 }
 
 export const FormGrid = defineComponent({
-  name: 'FormilyFormGrid',
+  name: 'FormGrid',
   props: {
     columnGap: {
       type: Number,
@@ -416,6 +416,7 @@ export const FormGrid = defineComponent({
 })
 
 export const FormGridColumn = defineComponent({
+  name: 'FormGridColumn',
   props: {
     gridSpan: {
       type: Number,

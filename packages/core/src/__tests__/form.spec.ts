@@ -192,7 +192,7 @@ test('deleteValuesIn/deleteInitialValuesIn', () => {
   expect(form.values.aa).toEqual(123)
   expect(form.values.bb).toEqual(123)
   form.deleteValuesIn('aa')
-  form.deleteIntialValuesIn('bb')
+  form.deleteInitialValuesIn('bb')
   expect(form.existValuesIn('aa')).toBeFalsy()
   expect(form.existInitialValuesIn('bb')).toBeFalsy()
 })
@@ -1091,4 +1091,58 @@ test('form lifecycle can be triggered after call form.setXXX', () => {
 
   expect(initialValuesTriggerNum).toEqual(3)
   expect(valuesTriggerNum).toEqual(6)
+})
+
+test('form values change with array field(default value)', async () => {
+  const handler = jest.fn()
+  const form = attach(
+    createForm({
+      effects() {
+        onFormValuesChange(handler)
+      },
+    })
+  )
+  const array = attach(
+    form.createArrayField({
+      name: 'array',
+      initialValue: [
+        {
+          hello: 'world',
+        },
+      ],
+    })
+  )
+  await array.push({})
+  expect(handler).toBeCalledTimes(2)
+})
+
+test('setValues deep merge', () => {
+  const form = attach(
+    createForm({
+      initialValues: {
+        aa: {
+          bb: 123,
+          cc: 321,
+        },
+      },
+    })
+  )
+  expect(form.values).toEqual({
+    aa: {
+      bb: 123,
+      cc: 321,
+    },
+  })
+  form.setValues({
+    aa: {
+      bb: '',
+      cc: '',
+    },
+  })
+  expect(form.values).toEqual({
+    aa: {
+      bb: '',
+      cc: '',
+    },
+  })
 })
