@@ -41,6 +41,9 @@ export default {
         decorator: 'Decorator',
         decoratorProps: 'Decorator Props',
       },
+      ValidatorSetter: {
+        configureValidator: 'Configure Validator',
+      },
     },
   },
 }

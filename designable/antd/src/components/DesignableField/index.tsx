@@ -182,7 +182,7 @@ export const createDesignableField = (options: IDesignableFieldProps) => {
         },
         'x-validator': {
           'x-decorator': 'FormItem',
-          // 'x-component': 'ValidatorSetter',
+          'x-component': 'ValidatorSetter',
           'x-index': 8,
         },
         required: {

@@ -39,6 +39,9 @@ export default {
         decorator: '容器',
         decoratorProps: '容器属性',
       },
+      ValidatorSetter: {
+        configureValidator: '配置校验规则',
+      },
     },
   },
 }
